@@ -1,0 +1,24 @@
+﻿.filaFichaje {
+    padding:5px;
+}
+
+.claveFichaje {
+    border: solid 1px red;
+    border-radius: 5px 5px;
+    padding: 2px;
+    margin: 2px;
+}
+
+.parFichaje {
+    border: solid 1px orange;
+    border-radius: 5px 5px;
+    padding: 2px;
+    margin: 2px;
+}
+
+.horasFichaje {
+    border: solid 1px green;
+    border-radius: 5px 5px;
+    padding: 2px;
+    margin: 2px;
+}

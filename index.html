@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Fichajes</title>
+    <link href="css/gui.css" rel="stylesheet" />
+    <script src="js/jquery-2.2.0.min.js"></script>
+    <script src="js/core.js"></script>
+    <script src="js/data-core.js"></script>
+    <script src="js/gui.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            pruebas();
+            muestraFichajeSemanaEnCurso();
+        });
+
+        function pruebas() {
+            localStorage.clear();
+            localStorage.setItem("DF-08:01:2016", JSON.stringify(['08:30', '17:30']));
+            localStorage.setItem("DF-09:01:2016", JSON.stringify(['08:30', '14:00', '15:00', '17:30']));
+            localStorage.setItem("DF-10:01:2016", JSON.stringify(['08:30', '14:00', '14:45', '17:30']));
+            localStorage.setItem("DF-11:01:2016", JSON.stringify(['08:20', '14:00', '14:45', '17:20']));
+            localStorage.setItem("DF-12:01:2016", JSON.stringify(['08:10', '14:00', '14:45']));
+
+
+            var core = new Core();
+
+            var date = new Date();
+            var data = { 'DF-17:01:2016': ['08:30', '14:00', '14:45', '17:30'] };
+            console.log(JSON.stringify(data));
+            console.log(JSON.stringify(data['17:01:2016']));
+            console.log("length:" + data.length);
+            console.log("keys:" + JSON.stringify(Object.keys(data)));
+            console.log("keys:" + Object.keys(data)[0]);
+
+            var fichaje = { calve: 'fichajeClave', datos: ['08:30', '14:00', '14:45'] }; //, '17:30'];
+            console.log(JSON.stringify(fichaje));
+            console.log("Horas fichaje: " + core.calcularHorasFichaje(fichaje));
+
+            var date1 = new Date(2016, 0, 17, 8, 30);
+            var date2 = new Date(2016, 0, 17, 14, 00);
+            var date3 = new Date();
+
+            date3.setTime(date2.getTime() - date1.getTime());
+
+            console.log(date3);
+
+            var record = "{'17:01:2016':['08:30','14:00','14:45','17:30']}";
+            //var data = JSON.parse(record);
+
+            var dataCore = new DataCore();
+            console.log("Fichajes desde localStorage: " + JSON.stringify(dataCore.fichajesSemanaActual()));
+
+            var f1 = new Date(2016, 1, 1, 12, 00, 00, 00);
+            var f2 = new Date(2016, 1, 1, 13, 01, 00, 00);
+            console.log("f1: " + f1.getTime() + " - " + f1);
+            console.log("f2: " + f2.getTime() + " - " + f2);
+            var diff = new Date();
+            diff.setTime(f2.getTime() - f1.getTime());
+            console.log("diff: " + diff + " [" + diff.getHours() + ":" + diff.getMinutes() + "]");
+            diff.setTime(0);
+            console.log("diff:" + diff);
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Fichajes</h1>
+    </header>
+
+    <section id="fichajesSemanalCotenedor">
+    </section>
+
+    <section id="fichajeHoraOpContenedor">
+        <span id="claveFichaje"></span>
+        <br />
+        <label for="horaActualLabel">Actual:</label><span id="horaActualLabel"></span>
+        <br />
+        <label for="nuevaHoraLabel">Nueva:</label><input type="number" min="0" max="23" size="2" maxlength="2" />:<input type="number" min="0" max="59" size="2" maxlength="2" />
+        <br />
+        <button id="modificarHoraBtn">Modificar</button>
+        <button id="eliminarHoraBtn">Eliminar</button>
+        <button id="cancelarHoraBtn">Cancelar</button>
+    </section>
+    <br/>
+    <button id="fichajeBtn">Realizar Fichaje</button>
+
+</body>
+</html>
