@@ -1,4 +1,22 @@
-﻿.filaFichaje {
+﻿#fichajeHoraOpContenedor {
+    border: solid 1px orange;
+    border-radius: 5px 5px;
+    padding: 5px;
+    display: none;
+}
+
+#claveOpContenedor {
+    border: solid 1px orange;
+    border-radius: 5px 5px;
+    padding: 5px;
+    display: none;
+}
+
+#fichajeHoraOpContenedor div {
+    padding-bottom: 5px;
+}
+
+.filaFichaje {
     padding:5px;
 }
 
@@ -21,4 +39,8 @@
     border-radius: 5px 5px;
     padding: 2px;
     margin: 2px;
+}
+
+footer {
+    margin-top: 5px;
 }

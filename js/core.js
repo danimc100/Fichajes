@@ -29,6 +29,10 @@
         return (totalHoras.getHours() - 1) + ":" + totalHoras.getMinutes();
     }
 
+    this.calculaHorasFichajes = function (fichajes) {
+
+    }
+
     this.generaDateHora = function (strHora) {
         var arrayHora = strHora.split(":");
         var ahora = new Date();

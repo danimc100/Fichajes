@@ -1,9 +1,8 @@
-﻿//var FICHAJE_KEY_EXPR = 
+﻿var FICHAJE_KEY_EXPR = /^DF-\d+:\d+:\d+/
 // {clave:'', datos:[]}
 
 function DataCore() {
     this.recuperaFichaje = function (clave) {
-        //var clave = this.generaClaveFichaje(dia);
         var datosFichaje = localStorage.getItem(clave);
         if (!datosFichaje) {
             return null;
@@ -13,17 +12,6 @@ function DataCore() {
         fichaje["datos"] = JSON.parse(datosFichaje);
         return fichaje;
     }
-    //this.recuperaFichaje = function (dia) {
-    //    var clave = this.generaClaveFichaje(dia);
-    //    var datosFichaje = localStorage.getItem(clave);
-    //    if (!datosFichaje) {
-    //        return null;
-    //    }
-    //    var fichaje = new Object();
-    //    fichaje["clave"] = clave;
-    //    fichaje["datos"] = JSON.parse(datosFichaje);
-    //    return fichaje;
-    //}
 
     this.guardaFichaje = function (fichaje) {
         var clave = Object.keys(fichaje)[0];
@@ -65,10 +53,32 @@ function DataCore() {
         this.guardaFichaje(fichaje);
     }
 
-    // Elimina una hora de un fichaja determinado
+    // Modifica la hora de un fichaje
+    this.modificaHoraFichaje = function (clave, indexHF, hora) {
+        var fichaje = this.recuperaFichaje(clave);
+        fichaje.datos[indexHF] = hora;
+        this.guardaFichaje(fichaje);
+    }
+
+    // Elimina una hora de un fichaje
     this.eliminaHoraFichaje = function (clave, indexHF) {
         var fichaje = this.recuperaFichaje(clave);
         fichaje.datos.splice(indexHF, 1);
         this.guardaFichaje(fichaje);
+    }
+
+    // Elimina todos los datos sobre fichajes
+    this.eliminaFichajes = function () {
+        var exp = new RegExp(FICHAJE_KEY_EXPR);
+
+        var i = 0;
+        while (i < localStorage.length) {
+            var key = localStorage.key(i);
+            if (exp.test(key)) {
+                localStorage.removeItem(key);
+                continue;
+            }
+            i++;
+        }
     }
 }

@@ -14,13 +14,8 @@
         });
 
         function pruebas() {
-            localStorage.clear();
-            localStorage.setItem("DF-08:01:2016", JSON.stringify(['08:30', '17:30']));
-            localStorage.setItem("DF-09:01:2016", JSON.stringify(['08:30', '14:00', '15:00', '17:30']));
-            localStorage.setItem("DF-10:01:2016", JSON.stringify(['08:30', '14:00', '14:45', '17:30']));
-            localStorage.setItem("DF-11:01:2016", JSON.stringify(['08:20', '14:00', '14:45', '17:20']));
-            localStorage.setItem("DF-12:01:2016", JSON.stringify(['08:10', '14:00', '14:45']));
 
+            $("#infoLabel").append("Resolución: " + window.innerWidth + "x" + window.innerHeight);
 
             var core = new Core();
 
@@ -71,22 +66,41 @@
     </section>
 
     <section id="fichajeHoraOpContenedor">
-        <span id="claveFichaje"></span>
-        <br />
-        <label for="horaActualLabel">Actual:</label><span id="horaActualLabel"></span>
-        <br />
-        <label for="nuevaHoraLabel">Nueva:</label><input type="number" min="0" max="23" size="2" maxlength="2" />:<input type="number" min="0" max="59" size="2" maxlength="2" />
-        <br />
+        <div>
+            <span id="claveFichajeLabel"></span>
+            <br />
+            <label for="nuevaHoraLabel">Hora:</label>
+            <input id="horaInput" type="number" min="0" max="23" size="2" maxlength="2" />:
+            <input id="minutoInput" type="number" min="0" max="59" size="2" maxlength="2" />
+        </div>
         <button id="modificarHoraBtn">Modificar</button>
         <button id="eliminarHoraBtn">Eliminar</button>
         <button id="cancelarHoraBtn">Cancelar</button>
     </section>
+
+    <section id="sumarioSemanal">
+
+    </section>
+
+    <section id="claveOpContenedor">
+        Clave: <span id="claveLabel"></span>
+        <br />
+        <button id="eliminarClaveBtn">Eliminar</button>
+        <button id="cancelarClaveBtn">Cancelar</button>
+    </section>
+
     <br/>
     <button id="fichajeBtn">Realizar Fichaje</button>
+    <br />
+    <br />
+    <button id="resetBtn">Borrar Datos</button>
+    <button id="resetPruebasBtn">Reiniciar para pruebas</button>
 
     <footer>
-
+        <span>Autor: Daniel Martínez Cequiel 2016</span>
+        <br />
+        <span>Version: 0.2 beta</span>
+        <span id="infoLabel"></span>
     </footer>
-
 </body>
 </html>
