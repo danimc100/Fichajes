@@ -6,13 +6,15 @@ var idHoraSel;
 var claveSel;
 
 $(document).ready(function () {
-    // Realiza un fichaje
+    // Realiza un fichaje.
+    // -------------------
     $("#fichajeBtn").click(function () {
         dataCore.realizarFichaje();
         muestraFichajeSemanaEnCurso();
     });
 
     // Resetea localStorage con datos de pruebas.
+    // ------------------------------------------
     $("#resetPruebasBtn").click(function () {
         if (confirm("¿Desea reiniciar con datos de pruebas?")) {
             dataCore.eliminaFichajes();
@@ -25,6 +27,8 @@ $(document).ready(function () {
         }
     });
 
+    // Elimina todos los datos de fichajes.
+    // ------------------------------------
     $("#resetBtn").click(function () {
         if (confirm("¿Desea eliminar todos los datos?")) {
             dataCore.eliminaFichajes();
@@ -114,6 +118,8 @@ function muestraFichajeSemanaEnCurso() {
 
         fichajesSemanalCotenedor.append(fila);
     }
+
+    $("#horasSemanaLabel").text(core.calculaHorasFichajes(fichajes));
 }
 
 function generaLinkClave(clave) {

@@ -1,19 +1,16 @@
-﻿#fichajeHoraOpContenedor {
-    border: solid 1px orange;
-    border-radius: 5px 5px;
-    padding: 5px;
-    display: none;
+﻿/*header {
+    border: solid 1px red;
 }
 
-#claveOpContenedor {
-    border: solid 1px orange;
-    border-radius: 5px 5px;
-    padding: 5px;
-    display: none;
-}
+header h1 {
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 1px black;
+    display:inline;
+}*/
 
-#fichajeHoraOpContenedor div {
-    padding-bottom: 5px;
+footer {
+    margin-top: 5px;
 }
 
 .filaFichaje {
@@ -41,6 +38,37 @@
     margin: 2px;
 }
 
-footer {
-    margin-top: 5px;
+#fichajesSemanalCotenedor {
+    margin-bottom:5px;
+}
+
+#fichajeHoraOpContenedor {
+    border: solid 1px orange;
+    border-radius: 5px 5px;
+    padding: 5px;
+    display: none;
+}
+
+#fichajeHoraOpContenedor div {
+    padding-bottom: 5px;
+}
+
+#sumarioSemanal {
+    margin-bottom: 5px;
+}
+
+#claveOpContenedor {
+    border: solid 1px orange;
+    border-radius: 5px 5px;
+    padding: 5px;
+    display: none;
+}
+
+#botonesContenedor {
+    margin-bottom: 5px;
+}
+
+#botonesContenedor div {
+    margin-top:5px;
+    margin-bottom: 5px;
 }
