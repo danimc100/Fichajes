@@ -1,4 +1,9 @@
-﻿// Inicialización del entorno.
+﻿/***********************************
+ * Autor: Daniel Martínez Cequiel
+ * Fecha: 2016
+ ***********************************/
+
+// Inicialización del entorno.
 // ---------------------------
 var dataCore = new DataCore();
 var core = new Core();

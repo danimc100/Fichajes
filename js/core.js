@@ -1,4 +1,9 @@
-﻿// ------------------------------------------------
+﻿/***********************************
+ * Autor: Daniel Martínez Cequiel
+ * Fecha: 2016
+ ***********************************/
+
+// ------------------------------------------------
 // Clase para realizar cálculos sobre los fichajes.
 // ------------------------------------------------
 function Core() {
@@ -31,7 +36,8 @@ function Core() {
         var totalHoras = new Date();
         totalHoras.setTime(sumaTotal);
 
-        return this.formatoDos((totalHoras.getHours() - 1)) + ":" + this.formatoDos(totalHoras.getMinutes());
+        totalHoras.setHours(totalHoras.getHours() - 1);
+        return this.formatoDos((totalHoras.getHours())) + ":" + this.formatoDos(totalHoras.getMinutes());
     }
 
     // Calculas cuantas horas sales en los fichajes

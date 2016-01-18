@@ -1,5 +1,10 @@
-﻿$(document).ready(function () {
-    //pruebas();
+﻿/***********************************
+ * Autor: Daniel Martínez Cequiel
+ * Fecha: 2016
+ ***********************************/
+
+$(document).ready(function () {
+    pruebas();
     muestraFichajeSemanaEnCurso();
 });
 
@@ -17,9 +22,9 @@ function pruebas() {
     console.log("keys:" + JSON.stringify(Object.keys(data)));
     console.log("keys:" + Object.keys(data)[0]);
 
-    var fichaje = { calve: 'fichajeClave', datos: ['08:30', '14:00', '14:45'] }; //, '17:30'];
-    console.log(JSON.stringify(fichaje));
-    console.log("Horas fichaje: " + core.calcularHorasFichaje(fichaje));
+    //var fichaje = { calve: 'fichajeClave', datos: ['08:30', '14:00', '14:45'] }; //, '17:30'];
+    //console.log(JSON.stringify(fichaje));
+    //console.log("Horas fichaje: " + core.calcularHorasFichaje(fichaje));
 
     var date1 = new Date(2016, 0, 17, 8, 30);
     var date2 = new Date(2016, 0, 17, 14, 00);

@@ -1,4 +1,9 @@
-﻿var FICHAJE_KEY_EXPR = /^DF-\d+:\d+:\d+/
+﻿/***********************************
+ * Autor: Daniel Martínez Cequiel
+ * Fecha: 2016
+ ***********************************/
+
+var FICHAJE_KEY_EXPR = /^DF-\d+:\d+:\d+/
 
 // Almacenaje y extracción de datos de fichajes desde el localStoraje.
 // -------------------------------------------------------------------
