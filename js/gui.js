@@ -13,6 +13,10 @@ $(document).ready(function () {
         muestraFichajeSemanaEnCurso();
     });
 
+    $("#actualizaBtn").click(function () {
+        muestraFichajeSemanaEnCurso();
+    });
+
     // Resetea localStorage con datos de pruebas.
     // ------------------------------------------
     $("#resetPruebasBtn").click(function () {
