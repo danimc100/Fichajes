@@ -4,21 +4,21 @@
 function Core() {
     // Calcula las cantidad de horas del fichaje
     // -----------------------------------------
-    this.calcularHorasFichaje = function (fichaje) {
+    this.calculaHorasFichaje = function (fichaje) {
         var sumaTotal = 0;
         var horaEntrada = null;
         var horaSalida = null;
 
-        if (fichaje.datos.length < 1)
+        if (fichaje.datos.horas.length < 1)
             return "00:00";
 
-        for (var i = 0; i < fichaje.datos.length; i++) {
+        for (var i = 0; i < fichaje.datos.horas.length; i++) {
             if (this.indicePar(i)) {
-                horaEntrada = this.generaDateHora(fichaje.datos[i]);
+                horaEntrada = this.generaDateHora(fichaje.datos.horas[i]);
                 horaSalida = null;
             }
             else {
-                horaSalida = this.generaDateHora(fichaje.datos[i]);
+                horaSalida = this.generaDateHora(fichaje.datos.horas[i]);
                 sumaTotal += horaSalida.getTime() - horaEntrada.getTime();
             }
         }
@@ -30,7 +30,8 @@ function Core() {
 
         var totalHoras = new Date();
         totalHoras.setTime(sumaTotal);
-        return (totalHoras.getHours() - 1) + ":" + totalHoras.getMinutes();
+
+        return this.formatoDos((totalHoras.getHours() - 1)) + ":" + this.formatoDos(totalHoras.getMinutes());
     }
 
     // Calculas cuantas horas sales en los fichajes
@@ -40,7 +41,7 @@ function Core() {
         var totalMinutos = 0;
 
         for (var i = 0; i < fichajes.length; i++) {
-            var horasArray = this.calcularHorasFichaje(fichajes[i]).split(":");
+            var horasArray = this.calculaHorasFichaje(fichajes[i]).split(":");
             totalHoras += parseInt(horasArray[0]);
             totalMinutos += parseInt(horasArray[1]);
         }
@@ -51,12 +52,42 @@ function Core() {
         return totalHoras + ":" + totalMinutos;
     }
 
-    // Genera un objeto Date a partir de una cade H:M.
-    // -----------------------------------------------
+    this.calculaHoraSalida = function (fichaje) {
+        var horasFichaje = this.calculaHorasFichaje(fichaje);
+        var horasObjetivo = fichaje.datos.horasObjetivo;
+
+        var horasFichajeT = this.generaDateHora(horasFichaje).getTime();
+        var horasObjetivoT = this.generaDateHora(horasObjetivo).getTime();
+
+        if (horasObjetivoT > horasFichajeT) {
+            var diffHorasT = horasObjetivoT - horasFichajeT;
+            var ultimaHora = fichaje.datos.horas[fichaje.datos.horas.length - 1];
+            var ultimaHoraT = this.generaDateHora(ultimaHora).getTime();
+            var horaSalidaT = ultimaHoraT + diffHorasT;
+            var horaSalidaDate = new Date();
+            horaSalidaDate.setTime(horaSalidaT);
+            var horaSalida = this.formatoDos(horaSalidaDate.getHours()) + ":" + this.formatoDos(horaSalidaDate.getMinutes());
+            return horaSalida;
+        }
+        else
+            return null;
+    }
+
+    // Genera un objeto Date a partir de una cadena con formato H:M.
+    // -------------------------------------------------------------
     this.generaDateHora = function (strHora) {
         var arrayHora = strHora.split(":");
         var ahora = new Date();
         return new Date(ahora.getFullYear(), ahora.getMonth(), ahora.getDate(), parseInt(arrayHora[0]), parseInt(arrayHora[1]));
+    }
+
+    this.formatoDos = function (cadena) {
+        cadena = cadena.toString();
+
+        if (cadena.length == 1)
+            return "0" + cadena;
+        else
+            return cadena;
     }
 
     // Nos indica que el índice es par.

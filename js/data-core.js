@@ -1,5 +1,4 @@
 ﻿var FICHAJE_KEY_EXPR = /^DF-\d+:\d+:\d+/
-// {clave:'', datos:[]}
 
 // Almacenaje y extracción de datos de fichajes desde el localStoraje.
 // -------------------------------------------------------------------
@@ -20,7 +19,6 @@ function DataCore() {
     // Guarda un fichaje.
     // ------------------
     this.guardaFichaje = function (fichaje) {
-        var clave = Object.keys(fichaje)[0];
         localStorage.setItem(fichaje.clave, JSON.stringify(fichaje.datos));
     }
 
@@ -60,11 +58,13 @@ function DataCore() {
         // Si no hay datos del fichaje de hoy lo creamos
         if (!fichaje) {
             fichaje = new Object();
-            fichaje['clave'] = clave;
-            fichaje['datos'] = new Array();
+            fichaje.clave = clave;
+            fichaje.datos = new Object();
+            fichaje.datos.horasObjetivo = "08:30";
+            fichaje.datos.horas = new Array();
         }
 
-        fichaje.datos.push(horaFichaje);
+        fichaje.datos.horas.push(horaFichaje);
         this.guardaFichaje(fichaje);
     }
 
@@ -72,7 +72,7 @@ function DataCore() {
     // -------------------------------
     this.modificaHoraFichaje = function (clave, indexHF, hora) {
         var fichaje = this.recuperaFichaje(clave);
-        fichaje.datos[indexHF] = hora;
+        fichaje.datos.horas[indexHF] = hora;
         this.guardaFichaje(fichaje);
     }
 
@@ -80,7 +80,7 @@ function DataCore() {
     // -------------------------------
     this.eliminaHoraFichaje = function (clave, indexHF) {
         var fichaje = this.recuperaFichaje(clave);
-        fichaje.datos.splice(indexHF, 1);
+        fichaje.datos.horas.splice(indexHF, 1);
         this.guardaFichaje(fichaje);
     }
 

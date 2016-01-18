@@ -22,11 +22,11 @@ $(document).ready(function () {
     $("#resetPruebasBtn").click(function () {
         if (confirm("¿Desea reiniciar con datos de pruebas?")) {
             dataCore.eliminaFichajes();
-            localStorage.setItem("DF-08:01:2016", JSON.stringify(['08:30', '17:30']));
-            localStorage.setItem("DF-09:01:2016", JSON.stringify(['08:30', '14:00', '15:00', '17:30']));
-            localStorage.setItem("DF-10:01:2016", JSON.stringify(['08:30', '14:00', '14:45', '17:30']));
-            localStorage.setItem("DF-11:01:2016", JSON.stringify(['08:20', '14:00', '14:45', '17:20']));
-            localStorage.setItem("DF-12:01:2016", JSON.stringify(['08:10', '14:00', '14:45']));
+            localStorage.setItem("DF-08:01:2016", JSON.stringify({ horasObjetivo: '08:30', horas: ['08:30', '17:30'] }));
+            localStorage.setItem("DF-09:01:2016", JSON.stringify({ horasObjetivo: '08:30', horas: ['08:30', '14:00', '15:00', '17:30'] }));
+            localStorage.setItem("DF-10:01:2016", JSON.stringify({ horasObjetivo: '08:30', horas: ['08:30', '14:00', '14:45', '17:30'] }));
+            localStorage.setItem("DF-11:01:2016", JSON.stringify({ horasObjetivo: '08:30', horas: ['08:20', '14:00', '14:45', '17:20'] }));
+            localStorage.setItem("DF-12:01:2016", JSON.stringify({ horasObjetivo: '06:30', horas: ['08:10', '14:00', '14:45'] }));
             muestraFichajeSemanaEnCurso();
         }
     });
@@ -56,6 +56,11 @@ $(document).ready(function () {
     });
 
     $("#fichajesSemanalCotenedor").on("click", "[data-clave]", function () {
+        var clave = $(this).attr("data-clave");
+        var fichaje = dataCore.recuperaFichaje(clave);
+        $("#claveLabel").text(clave);
+        $("#horasObjetivoInput").val(fichaje.datos.horasObjetivo);
+
         $("#fichajesSemanalCotenedor").hide();
         $("#claveOpContenedor").show();
         return false;
@@ -76,6 +81,17 @@ $(document).ready(function () {
         $("#fichajeHoraOpContenedor").hide();
         muestraFichajeSemanaEnCurso();
         return false;
+    });
+
+    $("#modificarClaveBtn").click(function () {
+        var clave = $("#claveLabel").text();
+        var fichaje = dataCore.recuperaFichaje(clave);
+        fichaje.datos.horasObjetivo = $("#horasObjetivoInput").val();
+        dataCore.guardaFichaje(fichaje);
+
+        $("#fichajesSemanalCotenedor").show();
+        $("#claveOpContenedor").hide();
+        muestraFichajeSemanaEnCurso();
     });
 
     $("#eliminarClaveBtn").click(function () {
@@ -106,10 +122,9 @@ function muestraFichajeSemanaEnCurso() {
     for (var i = 0; i < fichajes.length; i++) {
         var fila = "<div class=\"filaFichaje\"><span class=\"claveFichaje\">" + generaLinkClave(fichajes[i].clave) + "</span>";
 
-        for (var j = 0; j < fichajes[i].datos.length; j += 2) {
-            fila += "<span class=\"parFichaje\"><a href=\"\" data-id=\"" + j + "\" data-text=\"" + fichajes[i].datos[j] + "\" data-fClave=\"" + fichajes[i].clave + "\">" + fichajes[i].datos[j] + "</a>";
-            if ((j + 1) < fichajes[i].datos.length) {
-                //fila += "&nbsp;-&nbsp;" + fichajes[i].datos[j + 1] + "</span>";
+        for (var j = 0; j < fichajes[i].datos.horas.length; j += 2) {
+            fila += "<span class=\"parFichaje\">" + generaLinkHora(fichajes[i], j);
+            if ((j + 1) < fichajes[i].datos.horas.length) {
                 fila += "&nbsp;-&nbsp;" + generaLinkHora(fichajes[i], j + 1) + "</span>";
             }
             else {
@@ -117,7 +132,12 @@ function muestraFichajeSemanaEnCurso() {
             }
         }
 
-        fila += "<span class=\"horasFichaje\">Horas: " + core.calcularHorasFichaje(fichajes[i]) + "</span>";
+        fila += "<span class=\"horasFichaje\">Horas: " + core.calculaHorasFichaje(fichajes[i]);
+        var horaSalida = core.calculaHoraSalida(fichajes[i]);
+        if(horaSalida) {
+            fila += " / Salida: " + horaSalida;
+        }
+        fila += "</span>"
         fila += "</div>";
 
         fichajesSemanalCotenedor.append(fila);
@@ -127,10 +147,10 @@ function muestraFichajeSemanaEnCurso() {
 }
 
 function generaLinkClave(clave) {
-    return "<a href=\"\" data-clave=\"\">" + clave + "</a>";
+    return "<a href=\"\" data-clave=\"" + clave + "\">" + clave + "</a>";
 }
 
 function generaLinkHora(fichaje, indice) {
-    return "<a href=\"\" data-id=\"" + indice + "\" data-text=\"" + fichaje.datos[indice] + "\" data-fClave=\"" + fichaje.clave + "\">" + fichaje.datos[indice] + "</a>";
+    return "<a href=\"\" data-id=\"" + indice + "\" data-text=\"" + fichaje.datos.horas[indice] + "\" data-fClave=\"" + fichaje.clave + "\">" + fichaje.datos.horas[indice] + "</a>";
 }
 
