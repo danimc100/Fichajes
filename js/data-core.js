@@ -30,7 +30,7 @@ function DataCore() {
     // Genera un clave a partir de una fecha.
     // --------------------------------------
     this.generaClaveFichaje = function (dia) {
-        return "DF-" + dia.getDate() + ":" + dia.getMonth() + ":" + dia.getFullYear();
+        return "DF-" + Core.formatoDos(dia.getDate()) + ":" + Core.formatoDos(dia.getMonth() + 1) + ":" + dia.getFullYear();
     }
 
     // Obtiene los fichajes de la semana actual.
@@ -56,7 +56,7 @@ function DataCore() {
     this.realizarFichaje = function () {
         // Comprobamos si hay datos de fichaje para hoy
         var hoy = new Date();
-        var horaFichaje = hoy.getHours() + ":" + hoy.getMinutes();
+        var horaFichaje = Core.formatoDos(hoy.getHours()) + ":" + Core.formatoDos(hoy.getMinutes());
         var clave = this.generaClaveFichaje(hoy);
         var fichaje = this.recuperaFichaje(clave);
 

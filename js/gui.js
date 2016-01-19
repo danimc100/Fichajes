@@ -57,7 +57,6 @@ $(document).ready(function () {
 
         $("#fichajesSemanalCotenedor").hide();
         $("#fichajeHoraOpContenedor").show();
-        return false;
     });
 
     $("#fichajesSemanalCotenedor").on("click", "[data-clave]", function () {
@@ -68,7 +67,6 @@ $(document).ready(function () {
 
         $("#fichajesSemanalCotenedor").hide();
         $("#claveOpContenedor").show();
-        return false;
     });
 
     $("#modificarHoraBtn").click(function () {
@@ -77,7 +75,6 @@ $(document).ready(function () {
         $("#fichajesSemanalCotenedor").show();
         $("#fichajeHoraOpContenedor").hide();
         muestraFichajeSemanaEnCurso();
-        return false;
     });
 
     $("#eliminarHoraBtn").click(function () {
@@ -85,7 +82,6 @@ $(document).ready(function () {
         $("#fichajesSemanalCotenedor").show();
         $("#fichajeHoraOpContenedor").hide();
         muestraFichajeSemanaEnCurso();
-        return false;
     });
 
     $("#modificarClaveBtn").click(function () {
@@ -112,7 +108,6 @@ $(document).ready(function () {
     $("#cancelarHoraBtn").click(function () {
         $("#fichajesSemanalCotenedor").show();
         $("#fichajeHoraOpContenedor").hide();
-        return false;
     });
 });
 
@@ -152,10 +147,10 @@ function muestraFichajeSemanaEnCurso() {
 }
 
 function generaLinkClave(clave) {
-    return "<a href=\"\" data-clave=\"" + clave + "\">" + clave + "</a>";
+    return "<a href=\"#\" data-clave=\"" + clave + "\">" + clave + "</a>";
 }
 
 function generaLinkHora(fichaje, indice) {
-    return "<a href=\"\" data-id=\"" + indice + "\" data-text=\"" + fichaje.datos.horas[indice] + "\" data-fClave=\"" + fichaje.clave + "\">" + fichaje.datos.horas[indice] + "</a>";
+    return "<a href=\"#\" data-id=\"" + indice + "\" data-text=\"" + fichaje.datos.horas[indice] + "\" data-fClave=\"" + fichaje.clave + "\">" + fichaje.datos.horas[indice] + "</a>";
 }
 
