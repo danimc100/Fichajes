@@ -20,6 +20,7 @@ $(document).ready(function () {
 
     $("#actualizaBtn").click(function () {
         muestraFichajeSemanaEnCurso();
+        $("#infoLabel").text("Resolución: " + window.innerWidth + "x" + window.innerHeight);
     });
 
     // Resetea localStorage con datos de pruebas.
@@ -48,7 +49,6 @@ $(document).ready(function () {
     $("#fichajesSemanalCotenedor").on("click", "[data-fClave]", function () {
         idHoraSel = parseInt($(this).attr("data-id"));
         claveSel = $(this).attr("data-fClave")
-        console.log("Hora seleccionada: " + idHoraSel + "," + claveSel);
 
         $("#claveFichajeLabel").text(claveSel);
         var horaArray = $(this).text().split(":");

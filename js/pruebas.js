@@ -10,8 +10,6 @@ $(document).ready(function () {
 
 function pruebas() {
 
-    $("#infoLabel").append("Resolución: " + window.innerWidth + "x" + window.innerHeight);
-
     var core = new Core();
 
     var date = new Date();
