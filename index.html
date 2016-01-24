@@ -2,62 +2,73 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Fichajes</title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap-theme.css" rel="stylesheet" />
     <link href="css/gui.css" rel="stylesheet" />
+    
     <script src="js/jquery-2.2.0.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    
     <script src="js/core.js"></script>
     <script src="js/data-core.js"></script>
     <script src="js/gui.js"></script>
     <script src="js/pruebas.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <header>
-        <h1>Fichajes</h1>
-    </header>
+    <div class="page-header">
+        <h1 class="tituloCentrado">Fichajes</h1>
+    </div>
 
     <section id="fichajesSemanalCotenedor">
     </section>
 
     <section id="fichajeHoraOpContenedor">
-        <div>
-            <span id="claveFichajeLabel"></span>
+        <div class="form-group">
+            <span id="claveFichajeLabel" class="label label-info"></span>
             <br />
-            <label for="nuevaHoraLabel">Hora:</label>
-            <input id="horaInput" type="number" min="0" max="23" size="2" maxlength="2" />:
-            <input id="minutoInput" type="number" min="0" max="59" size="2" maxlength="2" />
+            <label for="nuevaHoraLabel">Horas</label>
+            <input id="horaInput" class="form-control" type="number" min="0" max="23" size="2" maxlength="2" placeholder="Horas" />
+            <label for="minutoInput">Minutos</label>
+            <input id="minutoInput" class="form-control" type="number" min="0" max="59" size="2" maxlength="2" placeholder="Minutos" />
         </div>
-        <button id="modificarHoraBtn">Modificar</button>
-        <button id="eliminarHoraBtn">Eliminar</button>
-        <button id="cancelarHoraBtn">Cancelar</button>
-    </section>
-
-    <section id="sumarioSemanal">
-        Total horas semana: <span id="horasSemanaLabel"></span>
+        <button id="modificarHoraBtn" class="btn btn-default">Modificar</button>
+        <button id="eliminarHoraBtn" class="btn btn-danger">Eliminar</button>
+        <button id="cancelarHoraBtn" class="btn btn-default">Cancelar</button>
     </section>
 
     <section id="claveOpContenedor">
-        <div>
-            Clave: <span id="claveLabel"></span>
+        <div class="form-group">
+            <span id="claveLabel" class="label label-info"></span>
             <br />
-            Hora objetivo: <input id="horasObjetivoInput" type="text" />:
+            <label for="horasObjetivoInput">Horas objetivo</label>
+            <input id="horasObjetivoInput" type="number" class="form-control" min="0" max="23" size="2" maxlength="2" />
+            <label for="minutosObjetivoInput">Minutos objetivo</label>
+            <input id="minutosObjetivoInput" type="number" class="form-control" min="0" max="59" size="2" maxlength="2" />
         </div>
-        <button id="modificarClaveBtn">Modificar</button>
-        <button id="eliminarClaveBtn">Eliminar</button>
-        <button id="cancelarClaveBtn">Cancelar</button>
+        <button id="modificarClaveBtn" class="btn btn-default">Modificar</button>
+        <button id="eliminarClaveBtn" class="btn btn-danger">Eliminar</button>
+        <button id="cancelarClaveBtn" class="btn btn-default">Cancelar</button>
+    </section>
+
+    <section id="sumarioSemanal" class="alert alert-success">
+        Total horas semana: <span id="horasSemanaLabel"></span>
     </section>
 
     <div id="botonesContenedor">
-        <button id="fichajeBtn">Realizar Fichaje</button>&nbsp;
-        <button id="actualizaBtn">Actualiza</button>
+        <button id="fichajeBtn" class="btn btn-primary btn-block">Realizar Fichaje</button>&nbsp;
+        <button id="actualizaBtn" class="btn btn-default btn-block">Actualiza</button>
         <div>
-            <button id="resetBtn">Borrar Datos</button>
-            <button id="resetPruebasBtn">Reiniciar para pruebas</button>
+            <button id="resetBtn" class="btn btn-danger">Borrar Datos</button>
+            <button id="resetPruebasBtn" class="btn btn-danger">Reiniciar para pruebas</button>
         </div>
     </div>
 
     <footer>
         <span>Autor: Daniel Martínez Cequiel 2016</span>
         <br />
-        <span>Version: 0.1.4 beta</span>
+        <span>Version: 0.1.5 beta</span>
         <span id="infoLabel"></span>
     </footer>
 </body>

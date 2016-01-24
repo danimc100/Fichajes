@@ -3,6 +3,8 @@
  * Fecha: 2016
  ***********************************/
 
+"use strict";
+
 // ------------------------------------------------
 // Clase para realizar cálculos sobre los fichajes.
 // ------------------------------------------------
@@ -55,7 +57,7 @@ function Core() {
         totalHoras += parseInt(Math.floor(totalMinutos / 60));
         totalMinutos = totalMinutos % 60;
 
-        return totalHoras + ":" + totalMinutos;
+        return Core.formatoDos(totalHoras) + ":" + Core.formatoDos(totalMinutos);
     }
 
     // Calcula la hora de salida en función del fichaje.

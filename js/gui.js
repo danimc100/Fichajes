@@ -3,6 +3,8 @@
  * Fecha: 2016
  ***********************************/
 
+"use strict";
+
 // Inicialización del entorno.
 // ---------------------------
 var dataCore = new DataCore();
@@ -120,10 +122,10 @@ function muestraFichajeSemanaEnCurso() {
     fichajesSemanalCotenedor.html("");
 
     for (var i = 0; i < fichajes.length; i++) {
-        var fila = "<div class=\"filaFichaje\"><span class=\"claveFichaje\">" + generaLinkClave(fichajes[i].clave) + "</span>";
+        var fila = "<div class=\"filaFichaje\"><span class=\"label label-primary etiqueta-ajuste\">" + generaLinkClave(fichajes[i].clave) + "</span>";
 
         for (var j = 0; j < fichajes[i].datos.horas.length; j += 2) {
-            fila += "<span class=\"parFichaje\">" + generaLinkHora(fichajes[i], j);
+            fila += "<span class=\"label label-info etiqueta-ajuste\">" + generaLinkHora(fichajes[i], j);
             if ((j + 1) < fichajes[i].datos.horas.length) {
                 fila += "&nbsp;-&nbsp;" + generaLinkHora(fichajes[i], j + 1) + "</span>";
             }
@@ -132,12 +134,12 @@ function muestraFichajeSemanaEnCurso() {
             }
         }
 
-        fila += "<span class=\"horasFichaje\">Horas: " + core.calculaHorasFichaje(fichajes[i]);
+        fila += "<span class=\"label label-success etiqueta-ajuste\">Horas: " + core.calculaHorasFichaje(fichajes[i]);
         var horaSalida = core.calculaHoraSalida(fichajes[i]);
         if(horaSalida) {
             fila += " / Salida: " + horaSalida;
         }
-        fila += "</span>"
+        fila += "</span>";
         fila += "</div>";
 
         fichajesSemanalCotenedor.append(fila);
@@ -147,7 +149,7 @@ function muestraFichajeSemanaEnCurso() {
 }
 
 function generaLinkClave(clave) {
-    return "<a href=\"#\" data-clave=\"" + clave + "\">" + clave + "</a>";
+    return "<a href=\"#\" data-clave=\"" + clave + "\"><span class=\"badge\">" + clave + "</span></a>";
 }
 
 function generaLinkHora(fichaje, indice) {

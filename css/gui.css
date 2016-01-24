@@ -10,6 +10,7 @@ header h1 {
 }*/
 
 body {
+    margin: 5px;
     font-size: 15pt;
 }
 
@@ -26,30 +27,49 @@ footer {
     margin-top: 5px;
 }
 
+h3 {
+    margin: 0px;
+    padding: 0px;
+}
+
+.tituloCentrado {
+    width:200px; 
+    margin-left:auto; 
+    margin-right:auto; 
+    text-align:center;
+}
+
 .filaFichaje {
     padding:5px;
 }
 
-.claveFichaje {
-    border: solid 1px red;
+/*.claveFichaje {
+    border: solid 2px red;
     border-radius: 5px 5px;
+    background-color: lightgray;
     padding: 2px;
     margin: 2px;
-}
+}*/
 
-.parFichaje {
-    border: solid 1px orange;
+/*.parFichaje {
+    border: solid 2px orange;
     border-radius: 5px 5px;
+    background-color: aqua;
     padding: 2px;
     margin: 2px;
+}*/
+
+.etiqueta-ajuste {
+    padding: 5px;
+    margin-right: 5px;
 }
 
-.horasFichaje {
+/*.horasFichaje {
     border: solid 1px green;
     border-radius: 5px 5px;
     padding: 2px;
     margin: 2px;
-}
+}*/
 
 #fichajesSemanalCotenedor {
     margin-bottom:5px;

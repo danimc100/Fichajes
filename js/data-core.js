@@ -3,6 +3,8 @@
  * Fecha: 2016
  ***********************************/
 
+"use strict";
+
 var FICHAJE_KEY_EXPR = /^DF-\d+:\d+:\d+/
 
 // Almacenaje y extracción de datos de fichajes desde el localStoraje.

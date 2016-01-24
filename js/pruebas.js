@@ -3,6 +3,8 @@
  * Fecha: 2016
  ***********************************/
 
+"use strict";
+
 $(document).ready(function () {
     pruebas();
     muestraFichajeSemanaEnCurso();
@@ -25,7 +27,7 @@ function pruebas() {
     //console.log("Horas fichaje: " + core.calcularHorasFichaje(fichaje));
 
     var date1 = new Date(2016, 0, 17, 8, 30);
-    var date2 = new Date(2016, 0, 17, 14, 00);
+    var date2 = new Date(2016, 0, 17, 14, 0);
     var date3 = new Date();
 
     date3.setTime(date2.getTime() - date1.getTime());
@@ -38,8 +40,8 @@ function pruebas() {
     var dataCore = new DataCore();
     console.log("Fichajes desde localStorage: " + JSON.stringify(dataCore.fichajesSemanaActual()));
 
-    var f1 = new Date(2016, 1, 1, 12, 00, 00, 00);
-    var f2 = new Date(2016, 1, 1, 13, 01, 00, 00);
+    var f1 = new Date(2016, 1, 1, 12, 0, 0, 0);
+    var f2 = new Date(2016, 1, 1, 13, 1, 0, 0);
     console.log("f1: " + f1.getTime() + " - " + f1);
     console.log("f2: " + f2.getTime() + " - " + f2);
     var diff = new Date();
