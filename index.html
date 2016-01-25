@@ -2,6 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Fichajes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta chartset="UTF-8" />
+
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/bootstrap-theme.css" rel="stylesheet" />
     <link href="css/gui.css" rel="stylesheet" />
@@ -13,9 +16,8 @@
     <script src="js/data-core.js"></script>
     <script src="js/gui.js"></script>
     <script src="js/pruebas.js"></script>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
     <div class="page-header">
         <h1 class="tituloCentrado">Fichajes</h1>
@@ -43,21 +45,25 @@
             <span id="claveLabel" class="label label-info"></span>
             <br />
             <label for="horasObjetivoInput">Horas objetivo</label>
-            <input id="horasObjetivoInput" type="number" class="form-control" min="0" max="23" size="2" maxlength="2" />
+            <input id="horasObjetivoInput" type="number" class="form-control" min="0" max="23" size="2" maxlength="2" placeholder="Horas" />
             <label for="minutosObjetivoInput">Minutos objetivo</label>
-            <input id="minutosObjetivoInput" type="number" class="form-control" min="0" max="59" size="2" maxlength="2" />
+            <input id="minutosObjetivoInput" type="number" class="form-control" min="0" max="59" size="2" maxlength="2" placeholder="Minutos" />
         </div>
         <button id="modificarClaveBtn" class="btn btn-default">Modificar</button>
         <button id="eliminarClaveBtn" class="btn btn-danger">Eliminar</button>
         <button id="cancelarClaveBtn" class="btn btn-default">Cancelar</button>
+        <button id="hacerClaveActualBtn" class="btn btn-warning">Hacer esta clave la actual</button>
     </section>
 
-    <section id="sumarioSemanal" class="alert alert-success">
+    <section id="sumarioSemanal" class="jumbotron">
         Total horas semana: <span id="horasSemanaLabel"></span>
+        <br />
+        Clave actual: <span id="claveActualLabel"></span>
     </section>
 
     <div id="botonesContenedor">
         <button id="fichajeBtn" class="btn btn-primary btn-block">Realizar Fichaje</button>&nbsp;
+        <button id="nuevaClaveBtn" class="btn btn-primary btn-block">Nueva Clave</button>&nbsp;
         <button id="actualizaBtn" class="btn btn-default btn-block">Actualiza</button>
         <div>
             <button id="resetBtn" class="btn btn-danger">Borrar Datos</button>
@@ -68,7 +74,7 @@
     <footer>
         <span>Autor: Daniel Martínez Cequiel 2016</span>
         <br />
-        <span>Version: 0.1.5 beta</span>
+        <span>Version: 0.1.7 beta</span>
         <span id="infoLabel"></span>
     </footer>
 </body>
