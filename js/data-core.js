@@ -5,7 +5,8 @@
 
 "use strict";
 
-var FICHAJE_KEY_EXPR = /^DF-\d{2}:\d{2}:\d{4}/
+//var FICHAJE_KEY_EXPR = /^DF-\d{2}:\d{2}:\d{4}/
+var FICHAJE_KEY_EXPR = /^DF-\d{4}:\d{2}:\d{2}/
 
 // Almacenaje y extracción de datos de fichajes desde el localStoraje.
 // -------------------------------------------------------------------
@@ -34,7 +35,8 @@ DataCore.prototype.guardaFichaje = function (fichaje) {
 // Genera un clave a partir de una fecha.
 // --------------------------------------
 DataCore.prototype.generaClaveFichaje = function (dia) {
-        return "DF-" + Core.formatoDos(dia.getDate()) + ":" + Core.formatoDos(dia.getMonth() + 1) + ":" + dia.getFullYear();
+    //return "DF-" + Core.formatoDos(dia.getDate()) + ":" + Core.formatoDos(dia.getMonth() + 1) + ":" + dia.getFullYear();
+    return "DF-" + dia.getFullYear() + ":" + Core.formatoDos(dia.getMonth() + 1) + ":" + Core.formatoDos(dia.getDate());
 }
 
 // Verifica que una clave es válida.

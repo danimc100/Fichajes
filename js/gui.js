@@ -55,11 +55,17 @@ $(document).ready(function () {
     $("#resetPruebasBtn").click(function () {
         if (confirm("¿Desea reiniciar con datos de pruebas?")) {
             dataCore.eliminaFichajes();
-            localStorage.setItem("DF-08:01:2016", JSON.stringify({ horasObjetivo: '08:30', horas: ['08:30', '17:30'] }));
-            localStorage.setItem("DF-09:01:2016", JSON.stringify({ horasObjetivo: '08:30', horas: ['08:30', '14:00', '15:00', '17:30'] }));
-            localStorage.setItem("DF-10:01:2016", JSON.stringify({ horasObjetivo: '08:30', horas: ['08:30', '14:00', '14:45', '17:30'] }));
-            localStorage.setItem("DF-11:01:2016", JSON.stringify({ horasObjetivo: '08:30', horas: ['08:20', '14:00', '14:45', '17:20'] }));
-            localStorage.setItem("DF-12:01:2016", JSON.stringify({ horasObjetivo: '06:30', horas: ['08:10', '14:00', '14:45'] }));
+            //localStorage.setItem("DF-08:01:2016", JSON.stringify({ horasObjetivo: '08:30', horas: ['08:30', '17:30'] }));
+            //localStorage.setItem("DF-09:01:2016", JSON.stringify({ horasObjetivo: '08:30', horas: ['08:30', '14:00', '15:00', '17:30'] }));
+            //localStorage.setItem("DF-10:01:2016", JSON.stringify({ horasObjetivo: '08:30', horas: ['08:30', '14:00', '14:45', '17:30'] }));
+            //localStorage.setItem("DF-11:01:2016", JSON.stringify({ horasObjetivo: '08:30', horas: ['08:20', '14:00', '14:45', '17:20'] }));
+            //localStorage.setItem("DF-12:01:2016", JSON.stringify({ horasObjetivo: '06:30', horas: ['08:10', '14:00', '14:45'] }));
+
+            localStorage.setItem("DF-2016:01:08", JSON.stringify({ horasObjetivo: '08:30', horas: ['08:30', '17:30'] }));
+            localStorage.setItem("DF-2016:01:09", JSON.stringify({ horasObjetivo: '08:30', horas: ['08:30', '14:00', '15:00', '17:30'] }));
+            localStorage.setItem("DF-2016:01:10", JSON.stringify({ horasObjetivo: '08:30', horas: ['08:30', '14:00', '14:45', '17:30'] }));
+            localStorage.setItem("DF-2016:01:11", JSON.stringify({ horasObjetivo: '08:30', horas: ['08:20', '14:00', '14:45', '17:20'] }));
+            localStorage.setItem("DF-2016:01:12", JSON.stringify({ horasObjetivo: '06:30', horas: ['08:10', '14:00', '14:45'] }));
             muestraFichajeSemanaEnCurso();
         }
     });
@@ -183,6 +189,12 @@ function muestraFichajeSemanaEnCurso() {
         var fila = "<div class=\"filaFichaje\"><span class=\"label label-primary etiqueta-ajuste\">" + generaLinkClave(fichajes[i].clave) + "</span>";
 
         for (var j = 0; j < fichajes[i].datos.horas.length; j += 2) {
+            // Inserta un periodo fuera de fichaje
+            if (j > 0 && j < (fichajes[i].datos.horas.length)) {
+                fila += "<span class=\"label label-warning etiqueta-ajuste\">" + core.calculaDifHorasFichaje(fichajes[i], j - 1, j) + "</span>";
+            }
+
+            // Inserta un periodo de entrada y salida.
             fila += "<span class=\"label label-info etiqueta-ajuste\">" + generaLinkHora(fichajes[i], j);
             if ((j + 1) < fichajes[i].datos.horas.length) {
                 fila += "&nbsp;-&nbsp;" + generaLinkHora(fichajes[i], j + 1) + "</span>";

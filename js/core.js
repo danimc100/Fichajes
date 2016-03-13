@@ -11,6 +11,15 @@
 function Core() {
 }
 
+Core.prototype.calculaDifHorasFichaje = function(fichaje, i, j)
+{
+    var h1 = this.generaDateHora(fichaje.datos.horas[i]);
+    var h2 = this.generaDateHora(fichaje.datos.horas[j]);
+    var total = new Date();
+    total.setTime(h2.getTime() - h1.getTime());
+    return Core.formatoDos((total.getHours() - 1)) + ":" + Core.formatoDos(total.getMinutes());
+}
+
 // Calcula las cantidad de horas del fichaje.
 // ------------------------------------------
 Core.prototype.calculaHorasFichaje = function (fichaje) {
